@@ -15,6 +15,7 @@ export function initFiltering(elements, indexes) {
             const option = document.createElement("option");
             option.value = name;
             option.textContent = name;
+
             return option;
             // используйте name как значение и текстовое содержимое
             // @todo: создать и вернуть тег опции
@@ -24,15 +25,30 @@ export function initFiltering(elements, indexes) {
 
   return (data, state, action) => {
     // @todo: #4.2 — обработать очистку поля
-    const button = document.querySelector('button[name="clear"]');
-    if (button.name === "clear") {
-      const input = button.parentElement.querySelector("input");
-      if (input) input.value = "";
-      const fieldName = button.dataset.field;
-      state[fieldName] = "";
-    }
+  
 
-    // @todo: #4.5 — отфильтровать данные используя компаратор
+   if (action && action.name === "clear") {
+    
+        const button = document.querySelector('button[name="clear"]');//находим кнопку clear  в dom
+        if(button){
+        const parent = button?.parentElement;
+        const input = parent?.querySelector("input");
+
+      if (input)
+         input.value = "";
+      
+      const fieldName = button?.dataset.field;
+      if (fieldName) {
+        state[fieldName] = ""; 
+  }
+ };
+  }
+      
+   
+
+  // @todo: #4.5 — отфильтровать данные используя компаратор
     return data.filter((row) => compare(row, state));
-  };
-}
+    
+ 
+
+}}
