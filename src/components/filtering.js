@@ -41,10 +41,15 @@ export function initFiltering(elements, indexes) {
       if (fieldName) {
         state[fieldName] = ""; 
   }
+
  };
   }
       
-   
+    // --- Формируем диапазон total для arrayAsRange ---
+    state.total = [
+      state.totalFrom ? Number(state.totalFrom.replace(/\s/g, "")) : undefined,
+      state.totalTo ? Number(state.totalTo.replace(/\s/g, "")) : undefined
+    ];
 
   // @todo: #4.5 — отфильтровать данные используя компаратор
     return data.filter((row) => compare(row, state));
