@@ -22,7 +22,7 @@ export function initFiltering(elements) {
     // @todo: #4.2 — обработать очистку поля
 
     if (action && action.name === "clear") {
-      const button = document.querySelector('button[name="clear"]'); //находим кнопку clear  в dom
+      const button = action; //находим кнопку clear  в dom
       if (button) {
         const parent = button?.parentElement;
         const input = parent?.querySelector("input");
